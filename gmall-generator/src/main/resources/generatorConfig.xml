@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- MyBatis3Simple MyBatis3-->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+
+
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="com.promo.gmall.plugin.LombokPlugin"/>
+        <!--<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />-->
+        <!--<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />-->
+
+        <!-- 忽略mybatis生成的注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 配置数据库连接 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://47.105.101.74:3306/gmall?useUnicode=true&amp;useSSL=false&amp;characterEncoding=utf8"
+                        userId="root"
+                        password="byron@2020">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 指定javaBean生成的位置 -->
+        <javaModelGenerator
+                targetPackage="com.promo.gmall.domain"
+                targetProject="gmall-generator/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--指定sql映射文件生成的位置 -->
+        <sqlMapGenerator
+                targetPackage="mapper"
+                targetProject="gmall-generator/src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 指定mapper接口生成的位置 -->
+        <javaClientGenerator
+                type="XMLMAPPER"
+                targetPackage="com.promo.gmall.mapper"
+                targetProject="gmall-generator/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <!-- table指定每个表的生成策略 -->
+        <!--        <table tableName="category" domainObjectName="CategoryDO"-->
+        <!--               mapperName="CategoryMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--            <columnOverride column="level"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="is_leaf"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="status"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="channel"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--        </table>-->
+
+        <!--        <table tableName="category_property_name" domainObjectName="CategoryPropertyNameDO"-->
+        <!--               mapperName="CategoryPropertyNameMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--            <columnOverride column="is_required"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="input_type"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="property_type"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--        </table>-->
+
+
+        <!--        <table tableName="category_property_value" domainObjectName="CategoryPropertyValueDO"-->
+        <!--               mapperName="CategoryPropertyValueMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--        </table>-->
+
+
+        <!--        <table tableName="front_category" domainObjectName="FrontCategoryDO"-->
+        <!--               mapperName="FrontCategoryMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--            <columnOverride column="is_deleted"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--        </table>-->
+
+
+        <!--        <table tableName="home_resource" domainObjectName="HomeResourceDO"-->
+        <!--               mapperName="HomeResourceMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--            <columnOverride column="is_deleted"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--        </table>-->
+
+
+        <!--        <table tableName="item" domainObjectName="ItemDO"-->
+        <!--               mapperName="ItemMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--            <columnOverride column="shelf"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="is_deleted"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--        </table>-->
+
+        <!--        <table tableName="item_image" domainObjectName="ItemImageDO"-->
+        <!--               mapperName="ItemImageMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--            <columnOverride column="type"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="is_deleted"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--        </table>-->
+
+        <!--        <table tableName="item_price" domainObjectName="ItemPriceDO"-->
+        <!--               mapperName="ItemPriceMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--            <columnOverride column="is_deleted"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--        </table>-->
+
+
+        <!--        <table tableName="property_name" domainObjectName="PropertyNameDO"-->
+        <!--               mapperName="PropertyNameMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--            <columnOverride column="is_key_property"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="is_sell_property"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="is_goods_property"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="input_type"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="modify_type"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--        </table>-->
+
+        <!--        <table tableName="property_pair" domainObjectName="PropertyPairDO"-->
+        <!--               mapperName="PropertyPairMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--        </table>-->
+
+
+        <!--        <table tableName="property_value" domainObjectName="PropertyValueDO"-->
+        <!--               mapperName="PropertyValueMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--        </table>-->
+
+
+        <!--        <table tableName="user" domainObjectName="UserDO"-->
+        <!--               mapperName="UserMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--            <columnOverride column="status"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--        </table>-->
+
+
+        <!--        <table tableName="acl_user" domainObjectName="AclUserDO"-->
+        <!--               mapperName="AclUserMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--            <columnOverride column="is_deleted"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--        </table>-->
+
+
+        <!--        <table tableName="acl_role" domainObjectName="AclRoleDO"-->
+        <!--               mapperName="AclRoleMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--            <columnOverride column="is_deleted"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--        </table>-->
+
+        <!--        <table tableName="acl_permission" domainObjectName="AclPermissionDO"-->
+        <!--               mapperName="AclPermissionMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--            <columnOverride column="level"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="order_num"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="is_active"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="is_deleted"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--        </table>-->
+
+        <!--        <table tableName="acl_role_permission" domainObjectName="AclRolePermissionDO"-->
+        <!--               mapperName="AclRolePermissionMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--        </table>-->
+
+        <!--        <table tableName="acl_user_role" domainObjectName="AclUserRoleDO"-->
+        <!--               mapperName="AclUserRoleMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--        </table>-->
+
+
+        <!--        <table tableName="meta_data" domainObjectName="MetaDataDO"-->
+        <!--               mapperName="MetaDataMapper"  enableCountByExample="false"-->
+        <!--               enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post" />-->
+        <!--            <columnOverride column="type"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--            <columnOverride column="is_deleted"  jdbcType="INTEGER" javaType="java.lang.Integer" />-->
+        <!--        </table>-->
+
+        <table tableName="oversea_address" domainObjectName="OverseaAddressDO"
+               mapperName="OverseaAddressMapper" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+
+            <generatedKey column="id" sqlStatement="MySql" identity="true" type="post"/>
+            <columnOverride column="is_deleted" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <columnOverride column="level" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+        </table>
+
+        <!-- <table tableName="%"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               enableUpdateByExample="false">
+
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <columnOverride column="address"  javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="is_deleted"  jdbcType="INTEGER" javaType="java.lang.Integer"/>
+        </table> -->
+    </context>
+</generatorConfiguration>

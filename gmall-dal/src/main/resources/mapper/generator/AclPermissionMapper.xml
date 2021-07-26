@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.promo.gmall.mapper.AclPermissionMapper">
+    <resultMap id="BaseResultMap" type="com.promo.gmall.domain.AclPermissionDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="parent_id" jdbcType="BIGINT" property="parentId"/>
+        <result column="permission" jdbcType="VARCHAR" property="permission"/>
+        <result column="perm_url" jdbcType="VARCHAR" property="permUrl"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+        <result column="order_num" jdbcType="INTEGER" property="orderNum"/>
+        <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="is_active" jdbcType="INTEGER" property="isActive"/>
+        <result column="is_deleted" jdbcType="INTEGER" property="isDeleted"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, parent_id, permission, perm_url, level, order_num, menu_icon, description, is_active,
+        is_deleted, gmt_create, gmt_modified
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from acl_permission
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from acl_permission
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.promo.gmall.domain.AclPermissionDO">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into acl_permission (parent_id, permission, perm_url,
+        level, order_num, menu_icon,
+        description, is_active, is_deleted,
+        gmt_create, gmt_modified)
+        values (#{parentId,jdbcType=BIGINT}, #{permission,jdbcType=VARCHAR}, #{permUrl,jdbcType=VARCHAR},
+        #{level,jdbcType=INTEGER}, #{orderNum,jdbcType=INTEGER}, #{menuIcon,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR}, #{isActive,jdbcType=INTEGER}, #{isDeleted,jdbcType=INTEGER},
+        #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.promo.gmall.domain.AclPermissionDO">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into acl_permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="permission != null">
+                permission,
+            </if>
+            <if test="permUrl != null">
+                perm_url,
+            </if>
+            <if test="level != null">
+                level,
+            </if>
+            <if test="orderNum != null">
+                order_num,
+            </if>
+            <if test="menuIcon != null">
+                menu_icon,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="isActive != null">
+                is_active,
+            </if>
+            <if test="isDeleted != null">
+                is_deleted,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="parentId != null">
+                #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="permission != null">
+                #{permission,jdbcType=VARCHAR},
+            </if>
+            <if test="permUrl != null">
+                #{permUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=INTEGER},
+            </if>
+            <if test="orderNum != null">
+                #{orderNum,jdbcType=INTEGER},
+            </if>
+            <if test="menuIcon != null">
+                #{menuIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="isActive != null">
+                #{isActive,jdbcType=INTEGER},
+            </if>
+            <if test="isDeleted != null">
+                #{isDeleted,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.promo.gmall.domain.AclPermissionDO">
+        update acl_permission
+        <set>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="permission != null">
+                permission = #{permission,jdbcType=VARCHAR},
+            </if>
+            <if test="permUrl != null">
+                perm_url = #{permUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="level != null">
+                level = #{level,jdbcType=INTEGER},
+            </if>
+            <if test="orderNum != null">
+                order_num = #{orderNum,jdbcType=INTEGER},
+            </if>
+            <if test="menuIcon != null">
+                menu_icon = #{menuIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="isActive != null">
+                is_active = #{isActive,jdbcType=INTEGER},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.promo.gmall.domain.AclPermissionDO">
+        update acl_permission
+        set parent_id = #{parentId,jdbcType=BIGINT},
+        permission = #{permission,jdbcType=VARCHAR},
+        perm_url = #{permUrl,jdbcType=VARCHAR},
+        level = #{level,jdbcType=INTEGER},
+        order_num = #{orderNum,jdbcType=INTEGER},
+        menu_icon = #{menuIcon,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        is_active = #{isActive,jdbcType=INTEGER},
+        is_deleted = #{isDeleted,jdbcType=INTEGER},
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

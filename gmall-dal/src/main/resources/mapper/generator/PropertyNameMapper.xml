@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.promo.gmall.mapper.PropertyNameMapper">
+    <resultMap id="BaseResultMap" type="com.promo.gmall.domain.PropertyNameDO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="is_key_property" jdbcType="INTEGER" property="isKeyProperty"/>
+        <result column="is_sell_property" jdbcType="INTEGER" property="isSellProperty"/>
+        <result column="is_goods_property" jdbcType="INTEGER" property="isGoodsProperty"/>
+        <result column="input_type" jdbcType="INTEGER" property="inputType"/>
+        <result column="modify_type" jdbcType="INTEGER" property="modifyType"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, name, is_key_property, is_sell_property, is_goods_property, input_type, modify_type,
+        create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from property_name
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from property_name
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.promo.gmall.domain.PropertyNameDO">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into property_name (name, is_key_property, is_sell_property,
+        is_goods_property, input_type, modify_type,
+        create_time, update_time)
+        values (#{name,jdbcType=VARCHAR}, #{isKeyProperty,jdbcType=INTEGER}, #{isSellProperty,jdbcType=INTEGER},
+        #{isGoodsProperty,jdbcType=INTEGER}, #{inputType,jdbcType=INTEGER}, #{modifyType,jdbcType=INTEGER},
+        #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.promo.gmall.domain.PropertyNameDO">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into property_name
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="isKeyProperty != null">
+                is_key_property,
+            </if>
+            <if test="isSellProperty != null">
+                is_sell_property,
+            </if>
+            <if test="isGoodsProperty != null">
+                is_goods_property,
+            </if>
+            <if test="inputType != null">
+                input_type,
+            </if>
+            <if test="modifyType != null">
+                modify_type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="isKeyProperty != null">
+                #{isKeyProperty,jdbcType=INTEGER},
+            </if>
+            <if test="isSellProperty != null">
+                #{isSellProperty,jdbcType=INTEGER},
+            </if>
+            <if test="isGoodsProperty != null">
+                #{isGoodsProperty,jdbcType=INTEGER},
+            </if>
+            <if test="inputType != null">
+                #{inputType,jdbcType=INTEGER},
+            </if>
+            <if test="modifyType != null">
+                #{modifyType,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.promo.gmall.domain.PropertyNameDO">
+        update property_name
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="isKeyProperty != null">
+                is_key_property = #{isKeyProperty,jdbcType=INTEGER},
+            </if>
+            <if test="isSellProperty != null">
+                is_sell_property = #{isSellProperty,jdbcType=INTEGER},
+            </if>
+            <if test="isGoodsProperty != null">
+                is_goods_property = #{isGoodsProperty,jdbcType=INTEGER},
+            </if>
+            <if test="inputType != null">
+                input_type = #{inputType,jdbcType=INTEGER},
+            </if>
+            <if test="modifyType != null">
+                modify_type = #{modifyType,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.promo.gmall.domain.PropertyNameDO">
+        update property_name
+        set name = #{name,jdbcType=VARCHAR},
+        is_key_property = #{isKeyProperty,jdbcType=INTEGER},
+        is_sell_property = #{isSellProperty,jdbcType=INTEGER},
+        is_goods_property = #{isGoodsProperty,jdbcType=INTEGER},
+        input_type = #{inputType,jdbcType=INTEGER},
+        modify_type = #{modifyType,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

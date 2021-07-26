@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.promo.gmall.mapper.ItemMapper">
+    <resultMap id="BaseResultMap" type="com.promo.gmall.domain.ItemDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="category" jdbcType="VARCHAR" property="category"/>
+        <result column="features" jdbcType="VARCHAR" property="features"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="theme" jdbcType="VARCHAR" property="theme"/>
+        <result column="keyword" jdbcType="VARCHAR" property="keyword"/>
+        <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="category_path" jdbcType="VARCHAR" property="categoryPath"/>
+        <result column="product_color" jdbcType="VARCHAR" property="productColor"/>
+        <result column="material" jdbcType="VARCHAR" property="material"/>
+        <result column="product_size" jdbcType="VARCHAR" property="productSize"/>
+        <result column="imprinting_methods" jdbcType="VARCHAR" property="imprintingMethods"/>
+        <result column="imprint_location" jdbcType="VARCHAR" property="imprintLocation"/>
+        <result column="imprint_size" jdbcType="VARCHAR" property="imprintSize"/>
+        <result column="shipping_dimensions_length" jdbcType="INTEGER" property="shippingDimensionsLength"/>
+        <result column="shipping_dimensions_width" jdbcType="INTEGER" property="shippingDimensionsWidth"/>
+        <result column="shipping_dimensions_height" jdbcType="INTEGER" property="shippingDimensionsHeight"/>
+        <result column="shipping_weight" jdbcType="INTEGER" property="shippingWeight"/>
+        <result column="package_count" jdbcType="INTEGER" property="packageCount"/>
+        <result column="inside_packing" jdbcType="VARCHAR" property="insidePacking"/>
+        <result column="setup_charge" jdbcType="INTEGER" property="setupCharge"/>
+        <result column="shelf" jdbcType="INTEGER" property="shelf"/>
+        <result column="version" jdbcType="INTEGER" property="version"/>
+        <result column="is_deleted" jdbcType="INTEGER" property="isDeleted"/>
+        <result column="extra" jdbcType="VARCHAR" property="extra"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, title, category, features, description, theme, keyword, category_id, category_path,
+        product_color, material, product_size, imprinting_methods, imprint_location, imprint_size,
+        shipping_dimensions_length, shipping_dimensions_width, shipping_dimensions_height,
+        shipping_weight, package_count, inside_packing, setup_charge, shelf, version, is_deleted,
+        extra, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from item
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from item
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.promo.gmall.domain.ItemDO">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into item (title, category, features,
+        description, theme, keyword,
+        category_id, category_path, product_color,
+        material, product_size, imprinting_methods,
+        imprint_location, imprint_size, shipping_dimensions_length,
+        shipping_dimensions_width, shipping_dimensions_height,
+        shipping_weight, package_count, inside_packing,
+        setup_charge, shelf, version,
+        is_deleted, extra, create_time,
+        update_time)
+        values (#{title,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{features,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR}, #{theme,jdbcType=VARCHAR}, #{keyword,jdbcType=VARCHAR},
+        #{categoryId,jdbcType=INTEGER}, #{categoryPath,jdbcType=VARCHAR}, #{productColor,jdbcType=VARCHAR},
+        #{material,jdbcType=VARCHAR}, #{productSize,jdbcType=VARCHAR}, #{imprintingMethods,jdbcType=VARCHAR},
+        #{imprintLocation,jdbcType=VARCHAR}, #{imprintSize,jdbcType=VARCHAR},
+        #{shippingDimensionsLength,jdbcType=INTEGER},
+        #{shippingDimensionsWidth,jdbcType=INTEGER}, #{shippingDimensionsHeight,jdbcType=INTEGER},
+        #{shippingWeight,jdbcType=INTEGER}, #{packageCount,jdbcType=INTEGER}, #{insidePacking,jdbcType=VARCHAR},
+        #{setupCharge,jdbcType=INTEGER}, #{shelf,jdbcType=INTEGER}, #{version,jdbcType=INTEGER},
+        #{isDeleted,jdbcType=INTEGER}, #{extra,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.promo.gmall.domain.ItemDO">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                title,
+            </if>
+            <if test="category != null">
+                category,
+            </if>
+            <if test="features != null">
+                features,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="theme != null">
+                theme,
+            </if>
+            <if test="keyword != null">
+                keyword,
+            </if>
+            <if test="categoryId != null">
+                category_id,
+            </if>
+            <if test="categoryPath != null">
+                category_path,
+            </if>
+            <if test="productColor != null">
+                product_color,
+            </if>
+            <if test="material != null">
+                material,
+            </if>
+            <if test="productSize != null">
+                product_size,
+            </if>
+            <if test="imprintingMethods != null">
+                imprinting_methods,
+            </if>
+            <if test="imprintLocation != null">
+                imprint_location,
+            </if>
+            <if test="imprintSize != null">
+                imprint_size,
+            </if>
+            <if test="shippingDimensionsLength != null">
+                shipping_dimensions_length,
+            </if>
+            <if test="shippingDimensionsWidth != null">
+                shipping_dimensions_width,
+            </if>
+            <if test="shippingDimensionsHeight != null">
+                shipping_dimensions_height,
+            </if>
+            <if test="shippingWeight != null">
+                shipping_weight,
+            </if>
+            <if test="packageCount != null">
+                package_count,
+            </if>
+            <if test="insidePacking != null">
+                inside_packing,
+            </if>
+            <if test="setupCharge != null">
+                setup_charge,
+            </if>
+            <if test="shelf != null">
+                shelf,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="isDeleted != null">
+                is_deleted,
+            </if>
+            <if test="extra != null">
+                extra,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="features != null">
+                #{features,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="theme != null">
+                #{theme,jdbcType=VARCHAR},
+            </if>
+            <if test="keyword != null">
+                #{keyword,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryId != null">
+                #{categoryId,jdbcType=INTEGER},
+            </if>
+            <if test="categoryPath != null">
+                #{categoryPath,jdbcType=VARCHAR},
+            </if>
+            <if test="productColor != null">
+                #{productColor,jdbcType=VARCHAR},
+            </if>
+            <if test="material != null">
+                #{material,jdbcType=VARCHAR},
+            </if>
+            <if test="productSize != null">
+                #{productSize,jdbcType=VARCHAR},
+            </if>
+            <if test="imprintingMethods != null">
+                #{imprintingMethods,jdbcType=VARCHAR},
+            </if>
+            <if test="imprintLocation != null">
+                #{imprintLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="imprintSize != null">
+                #{imprintSize,jdbcType=VARCHAR},
+            </if>
+            <if test="shippingDimensionsLength != null">
+                #{shippingDimensionsLength,jdbcType=INTEGER},
+            </if>
+            <if test="shippingDimensionsWidth != null">
+                #{shippingDimensionsWidth,jdbcType=INTEGER},
+            </if>
+            <if test="shippingDimensionsHeight != null">
+                #{shippingDimensionsHeight,jdbcType=INTEGER},
+            </if>
+            <if test="shippingWeight != null">
+                #{shippingWeight,jdbcType=INTEGER},
+            </if>
+            <if test="packageCount != null">
+                #{packageCount,jdbcType=INTEGER},
+            </if>
+            <if test="insidePacking != null">
+                #{insidePacking,jdbcType=VARCHAR},
+            </if>
+            <if test="setupCharge != null">
+                #{setupCharge,jdbcType=INTEGER},
+            </if>
+            <if test="shelf != null">
+                #{shelf,jdbcType=INTEGER},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=INTEGER},
+            </if>
+            <if test="isDeleted != null">
+                #{isDeleted,jdbcType=INTEGER},
+            </if>
+            <if test="extra != null">
+                #{extra,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.promo.gmall.domain.ItemDO">
+        update item
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                category = #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="features != null">
+                features = #{features,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="theme != null">
+                theme = #{theme,jdbcType=VARCHAR},
+            </if>
+            <if test="keyword != null">
+                keyword = #{keyword,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryId != null">
+                category_id = #{categoryId,jdbcType=INTEGER},
+            </if>
+            <if test="categoryPath != null">
+                category_path = #{categoryPath,jdbcType=VARCHAR},
+            </if>
+            <if test="productColor != null">
+                product_color = #{productColor,jdbcType=VARCHAR},
+            </if>
+            <if test="material != null">
+                material = #{material,jdbcType=VARCHAR},
+            </if>
+            <if test="productSize != null">
+                product_size = #{productSize,jdbcType=VARCHAR},
+            </if>
+            <if test="imprintingMethods != null">
+                imprinting_methods = #{imprintingMethods,jdbcType=VARCHAR},
+            </if>
+            <if test="imprintLocation != null">
+                imprint_location = #{imprintLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="imprintSize != null">
+                imprint_size = #{imprintSize,jdbcType=VARCHAR},
+            </if>
+            <if test="shippingDimensionsLength != null">
+                shipping_dimensions_length = #{shippingDimensionsLength,jdbcType=INTEGER},
+            </if>
+            <if test="shippingDimensionsWidth != null">
+                shipping_dimensions_width = #{shippingDimensionsWidth,jdbcType=INTEGER},
+            </if>
+            <if test="shippingDimensionsHeight != null">
+                shipping_dimensions_height = #{shippingDimensionsHeight,jdbcType=INTEGER},
+            </if>
+            <if test="shippingWeight != null">
+                shipping_weight = #{shippingWeight,jdbcType=INTEGER},
+            </if>
+            <if test="packageCount != null">
+                package_count = #{packageCount,jdbcType=INTEGER},
+            </if>
+            <if test="insidePacking != null">
+                inside_packing = #{insidePacking,jdbcType=VARCHAR},
+            </if>
+            <if test="setupCharge != null">
+                setup_charge = #{setupCharge,jdbcType=INTEGER},
+            </if>
+            <if test="shelf != null">
+                shelf = #{shelf,jdbcType=INTEGER},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=INTEGER},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=INTEGER},
+            </if>
+            <if test="extra != null">
+                extra = #{extra,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.promo.gmall.domain.ItemDO">
+        update item
+        set title = #{title,jdbcType=VARCHAR},
+        category = #{category,jdbcType=VARCHAR},
+        features = #{features,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        theme = #{theme,jdbcType=VARCHAR},
+        keyword = #{keyword,jdbcType=VARCHAR},
+        category_id = #{categoryId,jdbcType=INTEGER},
+        category_path = #{categoryPath,jdbcType=VARCHAR},
+        product_color = #{productColor,jdbcType=VARCHAR},
+        material = #{material,jdbcType=VARCHAR},
+        product_size = #{productSize,jdbcType=VARCHAR},
+        imprinting_methods = #{imprintingMethods,jdbcType=VARCHAR},
+        imprint_location = #{imprintLocation,jdbcType=VARCHAR},
+        imprint_size = #{imprintSize,jdbcType=VARCHAR},
+        shipping_dimensions_length = #{shippingDimensionsLength,jdbcType=INTEGER},
+        shipping_dimensions_width = #{shippingDimensionsWidth,jdbcType=INTEGER},
+        shipping_dimensions_height = #{shippingDimensionsHeight,jdbcType=INTEGER},
+        shipping_weight = #{shippingWeight,jdbcType=INTEGER},
+        package_count = #{packageCount,jdbcType=INTEGER},
+        inside_packing = #{insidePacking,jdbcType=VARCHAR},
+        setup_charge = #{setupCharge,jdbcType=INTEGER},
+        shelf = #{shelf,jdbcType=INTEGER},
+        version = #{version,jdbcType=INTEGER},
+        is_deleted = #{isDeleted,jdbcType=INTEGER},
+        extra = #{extra,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

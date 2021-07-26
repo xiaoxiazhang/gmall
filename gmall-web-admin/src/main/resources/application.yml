@@ -1,0 +1,12 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 7200 # session超时时间
+
+spring:
+  profiles:
+    active: @profileActive@
+
+
+
